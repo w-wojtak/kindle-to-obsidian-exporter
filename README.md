@@ -19,12 +19,6 @@ You can choose either:
 - `.exe` file (portable, no installation required)
 - `.msi` installer (recommended for regular use)
 
-### macOS
-Download the latest `.dmg` file from the [Releases](https://github.com/YOUR-USERNAME/kindle-to-obsidian-exporter/releases) page.
-
-### Linux
-Download the appropriate package for your distribution from the [Releases](https://github.com/YOUR-USERNAME/kindle-to-obsidian-exporter/releases) page.
-
 ## Usage
 
 1. Select your Kindle's "My Clippings.txt" file
