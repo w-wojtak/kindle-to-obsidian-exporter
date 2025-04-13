@@ -14,7 +14,7 @@ A desktop application that exports your Kindle highlights from the "My Clippings
 ## Installation
 
 ### Windows
-Download the latest release from the [Releases](https://github.com/YOUR-USERNAME/kindle-to-obsidian-exporter/releases) page.
+Download the latest release from the [Releases](https://github.com/w-wojtak/kindle-to-obsidian-exporter/releases/) page.
 You can choose either:
 - `.exe` file (portable, no installation required)
 - `.msi` installer (recommended for regular use)
