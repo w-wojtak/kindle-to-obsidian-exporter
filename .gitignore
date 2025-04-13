@@ -1,0 +1,19 @@
+# Node
+node_modules/
+npm-debug.log
+
+# Rust
+target/
+Cargo.lock
+
+# Build outputs
+dist/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Editor specific
+.vscode/
+.idea/
+*.swp

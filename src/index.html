@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kindle to Obsidian Highlights Exporter</title>
+    <style>
+        :root {
+            --primary: #9370DB;
+            --primary-dark: #7B5FBE;
+            --secondary: #03dac6;
+            --background: #fafafa;
+            --surface: #ffffff;
+            --error: #b00020;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --border: #e0e0e0;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .app-container {
+            max-width: 800px;
+            margin: 0 auto;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            padding: 12px 15px;
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-weight: 500;
+            font-size: 20px;
+            margin: 0;
+        }
+        
+        .content {
+            flex: 1;
+            padding: 12px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .card {
+            background-color: var(--surface);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 12px;
+        }
+        
+        .input-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 6px 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background-color 0.2s, transform 0.1s;
+            white-space: nowrap;
+        }
+        
+        button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .file-info {
+            font-size: 14px;
+            color: var(--text-secondary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 500px;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        
+        .book-controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .book-list {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0;
+            max-height: 220px;
+            overflow-y: auto;
+            background-color: var(--surface);
+        }
+        
+        .book-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .book-item:last-child {
+            border-bottom: none;
+        }
+        
+        .book-item:hover {
+            background-color: rgba(0,0,0,0.02);
+        }
+        
+        .book-item label {
+            margin-left: 8px;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 14px;
+        }
+        
+        .checkbox {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary);
+        }
+        
+        .footer {
+            padding: 12px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        #exportBtn {
+            padding: 8px 20px;
+            font-size: 15px;
+            background-color: var(--primary);
+            min-width: 200px;
+        }
+        
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+        
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .error {
+            background-color: #ffebee;
+            color: var(--error);
+        }
+        
+        .progress {
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .search-container {
+            margin-bottom: 8px;
+        }
+
+        .info {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(147, 112, 219, 0.2);
+        }
+
+        .no-results {
+            padding: 12px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Kindle to Obsidian Highlights Exporter</h1>
+        </header>
+        
+        <div class="content">
+            <div class="card">
+                <div class="input-row">
+                    <button id="selectFileBtn">Select My Clippings.txt</button>
+                    <span id="fileInfo" class="file-info">No file selected</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="input-row">
+                    <button id="selectDirBtn">Select Output Directory</button>
+                    <span id="dirInfo" class="file-info">No directory selected</span>
+                </div>
+            </div>
+            
+            <div id="booksContainer" class="card" style="display: none;">
+                <div class="section-title">Books Found</div>
+                <div class="book-controls">
+                    <button id="selectAllBtn">Select All</button>
+                    <button id="deselectAllBtn">Deselect All</button>
+                </div>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search books..." class="search-input">
+                </div>
+                <div class="book-list" id="bookList"></div>
+            </div>
+            
+            <div id="statusMsg" class="status" style="display: none;"></div>
+        </div>
+        
+        <div class="footer">
+            <button id="exportBtn" disabled>Export Selected Books</button>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
