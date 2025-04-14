@@ -39,7 +39,7 @@ This application is built with [Tauri](https://tauri.app/), combining web techno
 ### Setup
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR-USERNAME/kindle-to-obsidian-exporter.git
+git clone https://github.com/w-wojtak/kindle-to-obsidian-exporter.git
 cd kindle-to-obsidian-exporter
 
 # Install dependencies
