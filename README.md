@@ -53,9 +53,6 @@ npm run tauri build
 ```
 
  
-![app](https://github.com/w-wojtak/kindle-to-obsidian-exporter/blob/main/docs/screenshot.png)
+<img src="https://github.com/w-wojtak/kindle-to-obsidian-exporter/blob/main/docs/screenshot.png" alt="app" width="600"/>
 
-![note1](https://github.com/w-wojtak/kindle-to-obsidian-exporter/blob/main/docs/example.png)
-
-
-
+<img src="https://github.com/w-wojtak/kindle-to-obsidian-exporter/blob/main/docs/example.png" alt="note1" width="600"/>
