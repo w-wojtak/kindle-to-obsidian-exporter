@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kindle to Obsidian Highlights Exporter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #faf8ff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(80, 60, 120, 0.10);
+      padding: min(48px, 5vw);
+      margin: 48px min(48px, 5vw);
+      width: min(1100px, 90vw);
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: min(48px, 5vw);
+    }
+    .screenshot-col {
+      flex: 1 1 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .screenshot {
+      width: min(480px, 45vw);
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(80,60,120,0.12);
+      margin-bottom: 0;
+      margin-right: 0;
+    }
+    .content-col {
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      min-width: min(260px, 45vw);
+    }
+    h1 {
+      color: #9370DB;
+      font-size: clamp(1.5em, 3vw, 2em);
+      margin-bottom: 0.6em;
+      margin-top: 0;
+    }
+    p {
+      margin-bottom: 1.4em;
+      font-size: clamp(1em, 1.8vw, 1.18em);
+      margin-top: 0;
+    }
+    .download-btn {
+      display: block;
+      width: 100%;
+      margin: 0.7em 0;
+      padding: min(16px, 2vw);
+      background: #9370DB;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: clamp(0.9em, 1.6vw, 1.1em);
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s;
+      text-align: center;
+    }
+    .download-btn:hover {
+      background: #7B5FBE;
+    }
+    .github-link {
+      display: inline-block;
+      margin-top: 2em;
+      color: #9370DB;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: clamp(0.9em, 1.6vw, 1.08em);
+    }
+    .github-link:hover {
+      text-decoration: underline;
+    }
+    .kofi-btn-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 2em;
+      margin-bottom: 0.7em;
+    }
+    .footer {
+      margin-top: 0.7em;
+      color: #aaa;
+      font-size: clamp(0.8em, 1.4vw, 1em);
+      text-align: center;
+      width: 100%;
+    }
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 24px 8px 16px 8px;
+        gap: 24px;
+      }
+      .screenshot {
+        width: min(480px, 90vw);
+      }
+      .content-col {
+        width: min(480px, 90vw);
+        min-width: 0;
+        align-items: center;
+      }
+      .download-btn {
+        width: 100%;
+      }
+      .kofi-btn-container {
+        margin-top: 1.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="screenshot-col">
+        <img src="screenshot.png" alt="App screenshot" class="screenshot" width="480">
+    </div>
+    <div class="content-col">
+      <h1>Kindle to Obsidian Highlights Exporter</h1>
+      <p>
+        Convert your Kindle highlights from <b>My Clippings.txt</b> into Markdown files for Obsidian.<br>
+        Simple, fast, and privacy-friendly.
+      </p>
+      <a class="download-btn" href="https://github.com/w-wojtak/kindle-to-obsidian-exporter/releases/download/v1.0.0/Kindle.to.Obsidian.Highlights.Exporter.exe">Download for Windows (.exe)</a>
+      <a class="download-btn" href="https://github.com/w-wojtak/kindle-to-obsidian-exporter/releases/download/v1.0.0/Kindle.to.Obsidian.Highlights.Exporter_1.0.0_x64_en-US.msi">Windows Installer (.msi)</a>
+      <a class="github-link" href="https://github.com/w-wojtak/kindle-to-obsidian-exporter" target="_blank">View on GitHub</a>
+    </div>
+  </div>
+  <div class="kofi-btn-container">
+    <a href='https://ko-fi.com/sunnypotato' target='_blank'>
+      <img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+    </a>
+  </div>
+  <div class="footer">
+    &copy; 2024 w-wojtak
+  </div>
+</body>
+</html>
