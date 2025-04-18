@@ -50,3 +50,12 @@ npm run tauri dev
 
 # Build for production
 npm run tauri build
+```
+
+ 
+![app](https://github.com/w-wojtak/kindle-to-obsidian-exporter/blob/main/docs/screenshot.png)
+
+![note1](https://github.com/w-wojtak/kindle-to-obsidian-exporter/blob/main/docs/example.png)
+
+
+
